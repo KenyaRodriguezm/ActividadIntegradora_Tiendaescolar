@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Reportes - Tienda Escolar</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  
+  <header class="store-banner">
+    <div class="banner-content">
+      <h1 class="store-title">Tienda Escolar</h1>
+      <p class="store-subtitle">Módulo de Reportes de Pantallas & Compras</p>
+    </div>
+  </header>
+
+  <main class="main-container">
+
+    
+    <div class="screen-wrapper">
+      <span class="screen-label">Pantalla 1 — Filtros del reporte de ventas</span>
+      <div class="card card-form">
+        <div class="card-header">
+          <h2>Reporte de Ventas</h2>
+          <button class="icon-btn no-print" title="Configuración">⚙</button>
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <label>Rango de fechas</label>
+            <div class="date-row">
+              <span>Desde</span>
+              <input type="date" value="2026-01-01">
+              <span>Hasta</span>
+              <input type="date" value="2026-01-31">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Categoría (opcional, multi-selección)</label>
+            <div class="checkbox-group">
+              <label><input type="checkbox"> Bebidas</label>
+              <label><input type="checkbox"> Snacks</label>
+              <label><input type="checkbox"> Papelería</label>
+              <label><input type="checkbox"> Galletas</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Producto (opcional, multi-selección)</label>
+            <select>
+              <option value="">Buscar producto...</option>
+              <option>Refresco 600ml</option>
+              <option>Papas 45g</option>
+              <option>Cuaderno 100h</option>
+              <option>Galletas Oreo 95g </option>
+            </select>
+          </div>
+
+          <div class="form-actions no-print">
+            <button class="btn btn-primary">Generar reporte</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen-wrapper">
+      <span class="screen-label">Pantalla 2 — Resultado del reporte de ventas</span>
+      <div class="card">
+        <div class="card-header">
+          <h2>Reporte de Ventas · 01–31 Ene 2026</h2>
+          <button class="icon-btn no-print" onclick="window.print()" title="Imprimir">⬇</button>
+        </div>
+        <div class="card-body">
+          <div class="summary-section">
+            <h3>Resumen</h3>
+            <div class="summary-grid">
+              <div class="summary-item"><span>Total vendido:</span> <strong>$12,450.00</strong></div>
+              <div class="summary-item"><span>Unidades vendidas:</span> <strong>318</strong></div>
+              <div class="summary-item"><span>Transacciones:</span> <strong>146</strong></div>
+            </div>
+          </div>
+
+          <!-- Bloque Ticket/Venta 1 -->
+          <div class="ticket-entry ticket-accent-1">
+            <div class="ticket-entry-header">
+              <strong>Venta </strong> · 2026-01-05 · Cliente: Mitchelle Pamela
+            </div>
+            <div class="ticket-entry-body">
+              <ul class="item-list">
+                <li><span>• Refresco 600ml x3 ($18.00)</span> <strong>$54.00</strong></li>
+                <li><span>• Papas 45g x2 ($15.00)</span> <strong>$30.00</strong></li>
+              </ul>
+              <div class="tx-footer">Total venta: $84.00</div>
+            </div>
+          </div>
+
+          <!-- Bloque Ticket/Venta 2 -->
+          <div class="ticket-entry ticket-accent-2">
+            <div class="ticket-entry-header">
+              <strong>Venta </strong> · 2026-01-05 · Cliente: J. López
+            </div>
+            <div class="ticket-entry-body">
+              <ul class="item-list">
+                <li><span>• Cuaderno 100h x1 ($35.00)</span> <strong>$35.00</strong></li>
+              </ul>
+              <div class="tx-footer">Total venta: $35.00</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+   
+    <div class="screen-wrapper">
+      <span class="screen-label">Pantalla 3 — Filtro de compras por fecha</span>
+      <div class="card card-form">
+        <div class="card-header">
+          <h2>Mis Compras</h2>
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <label>Rango de fechas</label>
+            <div class="date-row">
+              <span>Desde</span>
+              <input type="date" value="2026-01-01">
+              <span>Hasta</span>
+              <input type="date" value="2026-01-31">
+            </div>
+          </div>
+          <div class="form-actions no-print">
+            <button class="btn btn-primary">Buscar compras</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen-wrapper">
+      <span class="screen-label">Pantalla 4 — Lista de compras</span>
+      <div class="card">
+        <div class="card-header">
+          <h2>Mis Compras · 01–31 Ene 2026</h2>
+        </div>
+        <div class="card-body">
+          <div class="ticket-entry ticket-accent-1 list-row">
+            <div class="list-info">
+              <strong>Compra #1024</strong> · 2026-01-05 · <strong>$84.00</strong> · <span class="badge-success">Pago Finalizado</span>
+            </div>
+            <button class="btn btn-sm no-print">Ver ticket</button>
+          </div>
+
+          <div class="ticket-entry ticket-accent-2 list-row">
+            <div class="list-info">
+              <strong>Compra #1031</strong> · 2026-01-12 · <strong>$50.00</strong> · <span class="badge-success">Pago Finalizado</span>
+            </div>
+            <button class="btn btn-sm no-print">Ver ticket</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen-wrapper page-break-after">
+      <span class="screen-label">Pantalla 5 — Ticket </span>
+      <div class="card ticket-card">
+        <div class="card-header ticket-header-colored">
+          <h2>Ticket TCK-001024</h2>
+          <button class="icon-btn no-print" onclick="window.print()" title="Imprimir ticket">⬇</button>
+        </div>
+        <div class="card-body">
+          <div class="ticket-meta">
+            <p><strong>Fecha de compra:</strong> 2026-01-05</p>
+            <p><strong>Cliente:</strong> Mitchelle Pamela</p>
+          </div>
+
+          <table class="report-table">
+            <thead>
+              <tr>
+                <th>Producto</th>
+                <th class="text-center">Cant.</th>
+                <th class="text-right">P.Unit.</th>
+                <th class="text-right">Subtotal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Refresco 600ml</td>
+                <td class="text-center">3</td>
+                <td class="text-right">$18.00</td>
+                <td class="text-right">$54.00</td>
+              </tr>
+              <tr>
+                <td>Papas 45g</td>
+                <td class="text-center">2</td>
+                <td class="text-right">$15.00</td>
+                <td class="text-right">$30.00</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="divider"></div>
+
+          <div class="ticket-totals">
+            <div class="total-row">
+              <span>Método de pago: Tarjeta</span>
+              <span>$84.00</span>
+            </div>
+            <div class="total-row main-total">
+              <span>Total:</span>
+              <span>$84.00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</body>
+</html>

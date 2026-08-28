@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <!-- Tipos Simples Reutilizables -->
+    <xs:simpleType name="TipoMoneda">
+        <xs:restriction base="xs:decimal">
+            <xs:fractionDigits value="2"/>
+            <xs:minInclusive value="0.00"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="TipoId">
+        <xs:restriction base="xs:positiveInteger"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="TipoNumeroTicket">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="TCK-\d{6}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Ticket de Compra -->
+    <xs:element name="ticketCompra">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="encabezado">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="numeroTicket" type="TipoNumeroTicket" minOccurs="0"/>
+                            <xs:element name="idVenta" type="TipoId"/>
+                            <xs:element name="fechaCompra" type="xs:dateTime"/>
+                            <xs:element name="estado" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <xs:element name="datosCliente">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="idCliente" type="TipoId"/>
+                            <xs:element name="nombre" type="xs:string"/>
+                            <xs:element name="email" type="xs:string" minOccurs="0"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                
+                <xs:element name="productos">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="item" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="idProducto" type="TipoId"/>
+                                        <xs:element name="codigoBarras" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="nombreProducto" type="xs:string"/>
+                                        <xs:element name="cantidad" type="xs:positiveInteger"/>
+                                        <xs:element name="precioUnitario" type="TipoMoneda"/>
+                                        <xs:element name="subtotal" type="TipoMoneda"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                
+                <xs:element name="desglosePago">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="pago" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="metodoPago" type="xs:string"/>
+                                        <xs:element name="monto" type="TipoMoneda"/>
+                                        <xs:element name="fechaPago" type="xs:dateTime"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <xs:element name="totalPagado" type="TipoMoneda"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://tiendaescolar.edu.mx/reportes/compras"
+           targetNamespace="http://tiendaescolar.edu.mx/reportes/compras"
+           elementFormDefault="qualified">
+
+  <xs:annotation>
+    <xs:documentation>
+      Reporte de Compras (rol: Comprador). Lista las compras del cliente
+      filtradas por rango de fechas y referencia el ticket de cada una.
+      Requerimiento II (primera parte).
+    </xs:documentation>
+  </xs:annotation>
+
+  
+
+  <xs:simpleType name="TipoMoneda">
+    <xs:restriction base="xs:decimal">
+      <xs:minInclusive value="0"/>
+      <xs:fractionDigits value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="TipoEmail">
+    <xs:annotation>
+      <xs:documentation>
+        Correo electrónico del cliente. Expresión regular ajustada para
+        aceptar dominios con guiones y subdominios (ej. correo@alumno.uacm.edu.mx).
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[A-Za-z0-9._%+\-]+@[A-Za-z0-9](\.?[A-Za-z0-9\-])*\.[A-Za-z]{2,}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="TipoNumeroTicket">
+    <xs:annotation>
+      <xs:documentation>Folio único del ticket: prefijo TCK- seguido de 6 dígitos.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="TCK-\d{6}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="TipoEstadoVenta">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="completada"/>
+      <xs:enumeration value="cancelada"/>
+      <xs:enumeration value="pendiente"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  
+
+  <xs:element name="ReporteCompras">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Cliente" type="tns:ClienteType"/>
+        <xs:element name="Parametros">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="RangoFechas">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="FechaInicio" type="xs:date"/>
+                    <xs:element name="FechaFin" type="xs:date"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Compras" type="tns:ComprasType"/>
+      </xs:sequence>
+      <xs:attribute name="fechaGeneracion" type="xs:dateTime" use="required"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="ClienteType">
+    <xs:sequence>
+      <xs:element name="Nombre" type="xs:string"/>
+      <xs:element name="Email" type="tns:TipoEmail"/>
+    </xs:sequence>
+    <xs:attribute name="idCliente" type="xs:positiveInteger" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="ComprasType">
+    <xs:sequence>
+      <!-- + : si el reporte se genera, existe al menos una compra en el rango -->
+      <xs:element name="Compra" type="tns:CompraType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="CompraType">
+    <xs:sequence>
+      <xs:element name="Total" type="tns:TipoMoneda"/>
+      <xs:element name="Estado" type="tns:TipoEstadoVenta"/>
+      <xs:element name="Ticket">
+        <xs:annotation>
+          <xs:documentation>
+            Referencia al ticket descargable de esta compra (ver
+            ticket.xsd). "disponible=false" cuando la venta está
+            cancelada o pendiente, ya que no procede emitir ticket.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:attribute name="numeroTicket" type="tns:TipoNumeroTicket" use="required"/>
+          <xs:attribute name="disponible" type="xs:boolean" use="required"/>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="idVenta" type="xs:positiveInteger" use="required"/>
+    <xs:attribute name="fecha" type="xs:date" use="required"/>
+  </xs:complexType>
+
+</xs:schema>

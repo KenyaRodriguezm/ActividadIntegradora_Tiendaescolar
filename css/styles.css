@@ -1,0 +1,408 @@
+
+:root {
+  --primary-wine: #6b1426;         
+  --primary-wine-dark: #4a0c19;    
+  --wine-soft-1: #fbf0f2;          
+  --wine-border-1: #d99ba7;        
+  --wine-soft-2: #f4eaee;          
+  --wine-border-2: #c48b9f;        
+  --bg-color: #f7f7f9;             
+  --card-bg: #ffffff;
+  --text-main: #111111;            
+  --text-muted: #374151;           
+  --border-color: #d1d5db;
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  line-height: 1.5;
+}
+
+.store-banner {
+  background: linear-gradient(135deg, var(--primary-wine-dark), var(--primary-wine));
+  color: #ffffff;
+  padding: 2.2rem 1rem;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(74, 12, 25, 0.25);
+  margin-bottom: 2.5rem;
+  border-bottom: 4px solid var(--primary-wine-dark);
+}
+
+.store-title {
+  font-size: 1.85rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0.35rem;
+}
+
+.store-subtitle {
+  font-size: 0.95rem;
+  color: #fce7eb;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+}
+
+/* --- Contenedor Principal --- */
+.main-container {
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 0 1rem 3rem 1rem;
+}
+
+.screen-wrapper {
+  margin-bottom: 2.5rem;
+}
+
+.screen-label {
+  display: block;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--primary-wine);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+/* --- Tarjetas --- */
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.9rem 1.25rem;
+  border-bottom: 2px solid var(--border-color);
+  background-color: #fdfdfd;
+}
+
+.card-header h2 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.card-body {
+  padding: 1.25rem;
+}
+
+.divider {
+  height: 1px;
+  background-color: var(--border-color);
+  margin: 1.2rem 0;
+}
+
+/* --- Distinción visual para cada Ticket / Venta --- */
+.ticket-entry {
+  border-radius: 6px;
+  margin-top: 1rem;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+}
+
+.ticket-accent-1 {
+  border-left: 5px solid var(--primary-wine);
+}
+
+.ticket-accent-1 .ticket-entry-header {
+  background-color: var(--wine-soft-1);
+  border-bottom: 1px solid var(--wine-border-1);
+}
+
+.ticket-accent-2 {
+  border-left: 5px solid #8e2a44;
+}
+
+.ticket-accent-2 .ticket-entry-header {
+  background-color: var(--wine-soft-2);
+  border-bottom: 1px solid var(--wine-border-2);
+}
+
+.ticket-entry-header {
+  padding: 0.6rem 0.9rem;
+  font-size: 0.85rem;
+  color: var(--text-main);
+}
+
+.ticket-entry-body {
+  padding: 0.8rem 0.9rem;
+  background-color: #ffffff;
+}
+
+.ticket-header-colored {
+  background-color: var(--wine-soft-1);
+  border-bottom: 2px solid var(--primary-wine);
+}
+
+.ticket-header-colored h2 {
+  color: var(--primary-wine-dark);
+}
+
+/* --- Listados y Tablas --- */
+.summary-section h3 {
+  font-size: 0.95rem;
+  margin-bottom: 0.4rem;
+  color: var(--text-main);
+}
+
+.summary-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.item-list {
+  list-style: none;
+}
+
+.item-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.2rem 0;
+  font-size: 0.85rem;
+  color: var(--text-main);
+}
+
+.tx-footer {
+  text-align: right;
+  font-weight: 700;
+  margin-top: 0.4rem;
+  padding-top: 0.4rem;
+  border-top: 1px dashed var(--border-color);
+  font-size: 0.9rem;
+}
+
+.list-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0.9rem;
+}
+
+.badge-success {
+  color: #047857;
+  font-weight: 700;
+}
+
+.ticket-meta {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.report-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+.report-table th,
+.report-table td {
+  padding: 0.5rem 0.2rem;
+}
+
+.report-table th {
+  border-bottom: 2px solid var(--primary-wine);
+  text-align: left;
+  color: var(--text-main);
+  font-weight: 700;
+}
+
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+.ticket-totals {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.main-total {
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: var(--primary-wine-dark);
+}
+
+/* --- Formularios y Botones --- */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.date-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+}
+
+input[type="date"],
+select {
+  padding: 0.45rem 0.6rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: var(--text-main);
+  background-color: #fff;
+}
+
+input[type="date"]:focus,
+select:focus {
+  outline: 2px solid var(--primary-wine);
+}
+
+.checkbox-group {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.85rem;
+}
+
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.2rem;
+}
+
+.btn {
+  padding: 0.5rem 1.2rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px solid var(--border-color);
+  background-color: #fff;
+}
+
+.btn-primary {
+  background-color: var(--primary-wine);
+  color: #ffffff;
+  border-color: var(--primary-wine-dark);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-wine-dark);
+}
+
+.btn-sm {
+  padding: 0.3rem 0.6rem;
+  font-size: 0.78rem;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+}
+
+.icon-btn:hover {
+  background-color: var(--wine-soft-1);
+}
+
+
+@media print {
+  body {
+    background-color: #fff !important;
+    padding: 0 !important;
+    color: #000 !important;
+  }
+
+  .store-banner {
+    background: none !important;
+    color: #000 !important;
+    border-bottom: 2px solid #000 !important;
+    box-shadow: none !important;
+    padding: 0.5rem 0 1rem 0 !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .store-subtitle {
+    color: #000 !important;
+  }
+
+  .screen-label,
+  .no-print {
+    display: none !important;
+  }
+
+  .main-container,
+  .screen-wrapper {
+    max-width: 100% !important;
+    margin: 0 0 1.5rem 0 !important;
+    padding: 0 !important;
+    page-break-inside: avoid;
+  }
+
+  .card {
+    border: 1px solid #000 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+  }
+
+  .card-header,
+  .ticket-entry-header,
+  .ticket-header-colored {
+    background-color: #eee !important;
+    border-bottom: 1px solid #000 !important;
+    color: #000 !important;
+  }
+
+  .ticket-entry {
+    border: 1px solid #000 !important;
+    border-left: 4px solid #000 !important;
+  }
+
+  .divider {
+    background-color: #000 !important;
+  }
+
+  .report-table th {
+    border-bottom: 1px solid #000 !important;
+  }
+
+  .page-break-after {
+    page-break-after: always;
+  }
+}

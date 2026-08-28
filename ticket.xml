@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ticketCompra>
+    <encabezado>
+        <numeroTicket>TCK-001001</numeroTicket>
+        <idVenta>1001</idVenta>
+        <fechaCompra>2026-08-15T14:30:00</fechaCompra>
+        <estado>Venta Completada </estado>
+    </encabezado>
+    <datosCliente>
+        <idCliente>5</idCliente>
+        <nombre>Mitchelle pamela</nombre>
+        <email>michetlle.pamela@alumno.uacm.edu.mx</email>
+    </datosCliente>
+    <productos>
+        <item>
+            <idProducto>10</idProducto>
+            <codigoBarras>HERR-87392</codigoBarras>
+            <nombreProducto>Bisagra Reforzada de 3 Pulgadas</nombreProducto>
+            <cantidad>5</cantidad>
+            <precioUnitario>30.10</precioUnitario>
+            <subtotal>150.50</subtotal>
+        </item>
+    </productos>
+    <desglosePago>
+        <pago>
+            <metodoPago>Tarjeta de Crédito</metodoPago>
+            <monto>150.50</monto>
+            <fechaPago>2026-08-15T14:31:00</fechaPago>
+        </pago>
+    </desglosePago>
+    <totalPagado>150.50</totalPagado>
+</ticketCompra>

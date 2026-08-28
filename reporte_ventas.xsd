@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://tiendaescolar.edu.mx/reportes/ventas"
+           targetNamespace="http://tiendaescolar.edu.mx/reportes/ventas"
+           elementFormDefault="qualified">
+
+  <xs:annotation>
+    <xs:documentation>
+      Reporte de Ventas (rol: Vendedor). Parametrizable por categoría,
+      producto y rango de fechas. Requerimiento I.
+    </xs:documentation>
+  </xs:annotation>
+
+
+  <xs:simpleType name="TipoMoneda">
+    <xs:annotation>
+      <xs:documentation>Monto monetario en MXN, no negativo, 2 decimales.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:decimal">
+      <xs:minInclusive value="0"/>
+      <xs:fractionDigits value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="TipoCantidad">
+    <xs:annotation>
+      <xs:documentation>Cantidad de unidades vendidas de un producto; siempre &gt; 0.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:positiveInteger"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="TipoEstadoVenta">
+    <xs:annotation>
+      <xs:documentation>Estado de la venta al momento de generar el reporte.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="completada"/>
+      <xs:enumeration value="cancelada"/>
+      <xs:enumeration value="pendiente"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+
+  <xs:element name="ReporteVentas">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Parametros" type="tns:ParametrosType"/>
+        <xs:element name="Resumen" type="tns:ResumenType"/>
+        <xs:element name="Ventas" type="tns:VentasType"/>
+      </xs:sequence>
+      <xs:attribute name="fechaGeneracion" type="xs:dateTime" use="required"/>
+    </xs:complexType>
+  </xs:element>
+
+
+
+  <xs:complexType name="ParametrosType">
+    <xs:sequence>
+      <xs:element name="RangoFechas" type="tns:RangoFechasType"/>
+      <xs:element name="Categorias" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Categoria" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:simpleContent>
+                  <xs:extension base="xs:string">
+                    <xs:attribute name="idCategoria" type="xs:positiveInteger" use="required"/>
+                  </xs:extension>
+                </xs:simpleContent>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Productos" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Producto" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:simpleContent>
+                  <xs:extension base="xs:string">
+                    <xs:attribute name="idProducto" type="xs:positiveInteger" use="required"/>
+                  </xs:extension>
+                </xs:simpleContent>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="RangoFechasType">
+    <xs:sequence>
+      <xs:element name="FechaInicio" type="xs:date"/>
+      <xs:element name="FechaFin" type="xs:date"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  
+
+  <xs:complexType name="ResumenType">
+    <xs:sequence>
+      <xs:element name="TotalVentas" type="tns:TipoMoneda"/>
+      <xs:element name="TotalUnidadesVendidas" type="xs:nonNegativeInteger"/>
+      <xs:element name="NumeroTransacciones" type="xs:nonNegativeInteger"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  
+
+  <xs:complexType name="VentasType">
+    <xs:sequence>
+     
+      <xs:element name="Venta" type="tns:VentaType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="VentaType">
+    <xs:sequence>
+      <xs:element name="Cliente" type="tns:ClienteRefType"/>
+      <xs:element name="DetalleProductos">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Producto" type="tns:ProductoDetalleType" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="TotalVenta" type="tns:TipoMoneda"/>
+      <xs:element name="Estado" type="tns:TipoEstadoVenta"/>
+    </xs:sequence>
+    <xs:attribute name="idVenta" type="xs:positiveInteger" use="required"/>
+    <xs:attribute name="fecha" type="xs:date" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="ClienteRefType">
+    <xs:annotation>
+      <xs:documentation>Referencia ligera al cliente; el detalle completo vive en el módulo de clientes.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="idCliente" type="xs:positiveInteger" use="required"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="ProductoDetalleType">
+    <xs:sequence>
+      <xs:element name="Nombre" type="xs:string"/>
+      <xs:element name="Cantidad" type="tns:TipoCantidad"/>
+      <xs:element name="PrecioUnitario" type="tns:TipoMoneda"/>
+      <xs:element name="Subtotal" type="tns:TipoMoneda"/>
+    </xs:sequence>
+    <xs:attribute name="idProducto" type="xs:positiveInteger" use="required"/>
+    <xs:attribute name="idCategoria" type="xs:positiveInteger" use="required"/>
+  </xs:complexType>
+
+</xs:schema>

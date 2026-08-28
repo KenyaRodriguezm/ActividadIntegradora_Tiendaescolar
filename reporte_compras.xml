@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ReporteVentas xmlns="http://tiendaescolar.edu.mx/reportes/ventas"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:schemaLocation="http://tiendaescolar.edu.mx/reportes/ventas reporte_ventas.xsd"
+               fechaGeneracion="2026-02-01T09:15:00">
+
+  <Parametros>
+    <RangoFechas>
+      <FechaInicio>2026-01-01</FechaInicio>
+      <FechaFin>2026-01-31</FechaFin>
+    </RangoFechas>
+    <Categorias>
+      <Categoria idCategoria="1">Bebidas</Categoria>
+      <Categoria idCategoria="2">Snacks</Categoria>
+      <Categoria idCategoria="3">Papelería</Categoria>
+      <Categoria idCategoria="4">Galletas</Categoria>
+    </Categorias>
+  </Parametros>
+
+  <Resumen>
+    <TotalVentas>119.00</TotalVentas>
+    <TotalUnidadesVendidas>6</TotalUnidadesVendidas>
+    <NumeroTransacciones>2</NumeroTransacciones>
+  </Resumen>
+
+  <Ventas>
+    <Venta idVenta="1024" fecha="2026-01-05">
+      <Cliente idCliente="501">Mitchelle pamela</Cliente>
+      <DetalleProductos>
+        <Producto idProducto="10" idCategoria="1">
+          <Nombre>Refresco 600ml</Nombre>
+          <Cantidad>3</Cantidad>
+          <PrecioUnitario>18.00</PrecioUnitario>
+          <Subtotal>54.00</Subtotal>
+        </Producto>
+        <Producto idProducto="22" idCategoria="2">
+          <Nombre>Papas 45g</Nombre>
+          <Cantidad>2</Cantidad>
+          <PrecioUnitario>15.00</PrecioUnitario>
+          <Subtotal>30.00</Subtotal>
+        </Producto>
+      </DetalleProductos>
+      <TotalVenta>84.00</TotalVenta>
+      <Estado>Venta completada</Estado>
+    </Venta>
+
+    <Venta idVenta="1025" fecha="2026-01-05">
+      <Cliente idCliente="502">Mitchelle pamela</Cliente>
+      <DetalleProductos>
+        <Producto idProducto="31" idCategoria="3">
+          <Nombre>Cuaderno 100h</Nombre>
+          <Cantidad>1</Cantidad>
+          <PrecioUnitario>35.00</PrecioUnitario>
+          <Subtotal>35.00</Subtotal>
+        </Producto>
+      </DetalleProductos>
+      <TotalVenta>35.00</TotalVenta>
+      <Estado>Venta completada</Estado>
+    </Venta>
+  </Ventas>
+
+</ReporteVentas>
